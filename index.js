@@ -1,8 +1,10 @@
 const express = require("express");
 const { MongoClient } = require("mongodb");
+const { createServer } = require("http");
 
-const server = express();
+const app = express();
 const serverPort = process.env.PORT || 3000;
+const server = createServer(app);
 
 server.listen(serverPort, () => console.log(`Listening on ${serverPort}`));
 
