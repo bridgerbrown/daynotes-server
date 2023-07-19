@@ -3,7 +3,6 @@ const http = require("http");
 const WebSocket = require("ws");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
-require("dotenv").config();
 
 const app = express();
 app.use(express.static("public"));
