@@ -129,9 +129,6 @@ async function startServer() {
       });
     });
 
-    server.listen(serverPort, () => {
-      console.log(`Server started on port ${serverPort} in stage ${process.env.NODE_ENV}`);
-    });
   } catch (error) {
     console.error("Error starting the server:", error);
     client.close();
