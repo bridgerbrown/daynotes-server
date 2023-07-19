@@ -1,33 +1,17 @@
 const express = require("express");
-const http = require("http");
-const WebSocket = require("ws");
-const cors = require("cors");
 const { MongoClient } = require("mongodb");
-const { Server } = require("socket.io");
 
-const app = express();
-app.use(express.json());
-
-app.use(
-  cors({
-    origin: "https://daynotes-client.vercel.app/*",
-    methods: ["GET", "POST"],
-  })
-);
-
+const server = express();
 const serverPort = process.env.PORT || 3000;
-const server = http.createServer(app);
-const wss =
-  process.env.NODE_ENV === "production"
-    ? new WebSocket.Server({ server })
-    : new WebSocket.Server({ port: 5001 });
-const io = new Server(server);
-console.log("io: " + io);
 
-server.listen(serverPort);
-console.log(`Server started on port ${serverPort} in stage ${process.env.NODE_ENV}`);
+server.listen(serverPort, () => console.log(`Listening on ${serverPort}`));
 
-let keepAliveId;
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "*:*",
+    methods: ["GET", "POST"],
+  }
+});
 
 const mongodbstring = process.env.MONGODB_CONNECTION_STRING;
 const client = new MongoClient(mongodbstring);
@@ -41,61 +25,7 @@ async function connectToDatabase() {
   return database;
 }
 
-const keepServerAlive = () => {
-  keepAliveId = setInterval(() => {
-    wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send("ping");
-      }
-    });
-  }, 50000);
-};
-
-wss.on("connection", (ws, req) => {
-  console.log("Connection Opened");
-  console.log("Client size: ", wss.clients.size);
-
-  if (wss.clients.size === 1) {
-    console.log("first connection. starting keepalive");
-    keepServerAlive();
-  }
-
-  ws.on("message", (data) => {
-    let stringifiedData = data.toString();
-    if (stringifiedData === "pong") {
-      console.log("keepAlive");
-      return;
-    }
-    broadcast(ws, stringifiedData, false);
-  });
-
-  ws.on("close", (data) => {
-    console.log("closing connection");
-
-    if (wss.clients.size === 0) {
-      console.log("last client disconnected, stopping keepAlive interval");
-      clearInterval(keepAliveId);
-    }
-  });
-});
-
-function broadcast(ws, message, includeSelf) {
-  if (includeSelf) {
-    wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    });
-  } else {
-    wss.clients.forEach((client) => {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    });
-  }
-}
-
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
   socket.on("get-document", async (userId, date) => {
     const documentId = `${userId}-${date}`;
     const document = await findOrCreateDocument(documentId, userId, date);
