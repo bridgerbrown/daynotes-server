@@ -6,11 +6,11 @@ const { MongoClient } = require("mongodb");
 const { Server } = require("socket.io");
 
 const app = express();
-app.use(express());
+app.use(express.json());
 
 app.use(
   cors({
-    origin: "https://daynotes-client.vercel.app",
+    origin: "https://daynotes-client.vercel.app/*",
     methods: ["GET", "POST"],
   })
 );
