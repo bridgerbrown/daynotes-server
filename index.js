@@ -28,6 +28,7 @@ let keepAliveId;
 
 const mongodbstring = process.env.MONGODB_CONNECTION_STRING;
 const client = new MongoClient(mongodbstring);
+let database;
 
 async function connectToDatabase() {
   if (!database) {
