@@ -3,6 +3,7 @@ const http = require("http");
 const WebSocket = require("ws");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
+const { Server } = require("socket.io");
 
 const app = express();
 app.use(express.static("public"));
@@ -20,6 +21,7 @@ const wss =
   process.env.NODE_ENV === "production"
     ? new WebSocket.Server({ server })
     : new WebSocket.Server({ port: 5001 });
+const io = new Server(server);
 
 server.listen(serverPort);
 console.log(`Server started on port ${serverPort} in stage ${process.env.NODE_ENV}`);
