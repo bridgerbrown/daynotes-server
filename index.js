@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const { MongoClient } = require("mongodb");
 const { createServer } = require("http");
 const socketHandler = require("./controllers/socketController");
 
