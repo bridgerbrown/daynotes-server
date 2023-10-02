@@ -1,5 +1,5 @@
-const server = require('../index');
 const { MongoClient } = require("mongodb");
+const server = require('../index');
 
 const io = require('socket.io')(server, {
   cors: {
