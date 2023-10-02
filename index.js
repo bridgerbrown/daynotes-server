@@ -12,8 +12,8 @@ const server = createServer(app);
 server.listen(serverPort, () => console.log(`Listening on ${serverPort}`));
 module.exports = server;
 
-const socketHandler = require("./controllers/socketController");
-socketHandler(server);
+const initializeSocketHandler = require("./controllers/socketController")
+initializeSocketHandler(server);
 
 app.get("/", (req, res) => {
   res.send("Server is live...");
