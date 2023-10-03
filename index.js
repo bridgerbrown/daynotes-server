@@ -5,7 +5,7 @@ const { createServer } = require("http");
 const serverPort = process.env.PORT || 10000;
 
 app.all('*', (req, res) => {
-  return handle(req, res);
+  res.redirect('/404');
 })
 
 const server = createServer(app);
