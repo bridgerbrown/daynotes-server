@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+const Note = require('../models/Note');
 const server = require('../index');
 
 function initializeSocketHandler() {

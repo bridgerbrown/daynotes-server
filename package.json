@@ -1,11 +1,11 @@
 {
   "name": "daynotes-server",
   "version": "1.0.0",
-  "description": "Websocket server for DayNotes project by Bridger Brown",
+  "description": "Node.js Websocket server for DayNotes project by Bridger Brown",
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "dev": "NODE_ENV=development PORT=5000 node ./main.js",
+    "dev": "NODE_ENV=development PORT=5000 node ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bridger Brown",
@@ -14,11 +14,19 @@
     "node": ">=8.9.0"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^5.7",
     "mongoose": "^7.4.0",
     "socket.io": "^4.7.1",
+    "uuid": "^8.3.2",
     "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
