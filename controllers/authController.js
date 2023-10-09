@@ -1,4 +1,4 @@
-const User = require();
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -13,19 +13,20 @@ const handleLogin = async (req, res) => {
 
   const match = await bcrypt.compare(pwd, foundUser.password);
   if (match) {
-    const roles = Object.values(foundUser.roles);
     const accessToken = jwt.sign(
       {
         "UserInfo": {
           "username": foundUser.username,
-          "roles": roles
+          "userId": foundUser.userId
         }
       },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: '30m' }
     );
     const refreshToken = jwt.sign(
-      { "username": foundUser.username },
+      { "username": foundUser.username,
+        "userid": foundUser.userId
+      },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: '1d' }
     );
