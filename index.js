@@ -13,12 +13,12 @@ const connectToDatabase = require('./config/dbConn');
 const { createServer } = require("http");
 const serverPort = process.env.PORT || 10000;
 
-app.use(logger);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(credentials);
 app.use(cors(corsOptions));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(cookieParser());
+app.use(logger);
 
 app.use('/', express.static(path.join(__dirname, '/public')));
 
@@ -33,7 +33,7 @@ app.use(verifyJWT);
 app.all('*', (req, res) => {
   res.redirect('/404');
   if (req.accepts('html')) {
-    res.sendFile(path.join(__dirnamme, 'views', '404.html'));
+    res.sendFile(path.join(__dirname, 'views', '404.html'));
   } else if (req.accepts('json')) {
     res.json({ error: '404 Not Found' });
   } else {

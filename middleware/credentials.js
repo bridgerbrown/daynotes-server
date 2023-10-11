@@ -1,13 +1,9 @@
 require('dotenv').config({ path: '.env.local' });
+const allowedOrigins = require('../config/allowedOrigins');
 
 const credentials = (req, res, next) => {
-  const allowedOrigins = process.env.ALLOWED_ORIGIN;
   const origin = req.headers.origin;
-
-  const isLocal = req.hostname === 'localhost' || req.hostname === '127.0.0.1';
-  const effectiveOrigin = isLocal ? 'http://localhost' : origin;
-
-  if (allowedOrigins.includes(effectiveOrigin)) {
+  if (allowedOrigins.includes(origin)) {
     res.header('Access-Control-Allow-Credentials', true);
   }
   next();

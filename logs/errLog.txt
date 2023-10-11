@@ -4,3 +4,14 @@
 20231010	19:23:13	ceb26c7b-01f4-444c-af73-1caa9caac216	TypeError: Cannot read properties of undefined (reading 'includes')
 20231010	19:26:25	392731b1-0353-497f-bc7f-25506f503fc7	ReferenceError: allowedOrigins is not defined
 20231010	19:27:39	7c91b06a-3b93-4e91-9f54-a3be77ad160a	Error: Not allowed by CORS
+20231011	11:32:28	3cecde1a-8f65-43f7-8afa-422f282e5868	Error: Not allowed by CORS
+20231011	12:33:20	e5a4ecf7-e3e7-4bbd-8eea-cbfbf49b9833	Error: Not allowed by CORS
+20231011	12:33:20	c79e52e0-3bac-45f9-aa5d-470cccddef9b	Error: Not allowed by CORS
+20231011	12:37:32	f4ee0167-3a39-42bf-9a70-cfe572bb9188	ReferenceError: allowedOrigins is not defined
+20231011	13:21:22	1cddf0b9-e308-4e7c-9ae4-0495cae36fb7	Error: Not allowed by CORS
+20231011	13:22:32	6183e3c5-1595-4f2e-9791-eca1bf26b278	Error: Not allowed by CORS
+20231011	13:30:09	ae95ce67-9f31-4c55-8cab-fa8e619b32bf	Error: Not allowed by CORS
+20231011	13:31:20	68e24303-22e2-41d8-93fd-a961ebabd1fc	Error: Not allowed by CORS
+20231011	13:31:36	d3b249e8-6c05-4b43-b229-377953d934dc	Error: Not allowed by CORS
+20231011	13:32:28	22b65beb-d955-497a-98b4-eed2c0521a79	Error: Not allowed by CORS
+20231011	13:32:28	583be348-56c6-405f-9beb-fc4bc5c7f99e	Error: Not allowed by CORS
