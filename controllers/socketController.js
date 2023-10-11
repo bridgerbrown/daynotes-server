@@ -1,27 +1,8 @@
-const { MongoClient } = require("mongodb");
 const Note = require('../models/Note');
 const server = require('../index');
+const mongoose = require('mongoose');
 
-function initializeSocketHandler() {
-  const io = require('socket.io')(server, {
-    cors: {
-      origin: "*:*",
-      methods: ["GET", "POST"],
-    }
-  });
-
-  const mongodbstring = process.env.MONGODB_CONNECTION_STRING;
-  const client = new MongoClient(mongodbstring);
-  let database;
-
-  async function connectToDatabase() {
-    if (!database) {
-      await client.connect();
-      database = client.db("daynotes");
-    }
-    return database;
-  }
-
+function initializeSocketHandler(io) {
   io.on("connection", (socket) => {
     socket.on("get-document", async (userId, date) => {
       const documentId = `${userId}-${date}`;
@@ -56,23 +37,22 @@ function initializeSocketHandler() {
 
   async function findOrCreateDocument(documentId, userId, date) {
     try {
-      const database = await connectToDatabase();
-      const notes = database.collection("notes");
-      let note = await notes.findOne({ documentId: documentId });
+      const note = await Note.findOne({ documentId: documentId });
       if (note) {
         return note;
       } else {
         const emptyDelta = { ops: [] };
-        const updateResult = await notes.findOneAndUpdate(
-          { documentId: documentId, userId: userId, date: date },
-          { $setOnInsert: { data: emptyDelta, lastUpdated: new Date() } },
-          { upsert: true, returnDocument: "after" }
-        );
-        note = updateResult.value;
-        return note;
+        const newNote = new Note({
+          documentId,
+          userId,
+          date,
+          data: emptyDelta,
+          lastUpdated: new Date(),
+        });
+        await newNote.save();
+        return newNote;
       }
     } catch (error) {
-      await client.close();
       console.log("error", error);
       throw error;
     }
@@ -80,14 +60,7 @@ function initializeSocketHandler() {
 
   async function findDocument(documentId) {
     try {
-      const database = await connectToDatabase();
-      const notes = database.collection("notes");
-      const note = await notes.findOne({ documentId });
-      if (note) {
-        return note;
-      } else {
-        throw new Error("Note document not found");
-      }
+      return Note.findOne({ documentId });
     } catch (error) {
       console.log(error);
       throw error;
@@ -95,22 +68,20 @@ function initializeSocketHandler() {
   }
 
   async function saveDocument(documentId, data) {
-    const database = await connectToDatabase();
-    const notes = database.collection("notes");
-    await notes.findOneAndUpdate(
-      { documentId: documentId },
-      { $set: { data, lastUpdated: new Date() } }
-    );
+    try {
+      const note = await findDocument(documentId);
+      note.data = data;
+      note.lastUpdated = new Date();
+      await note.save();
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 
   async function deleteDocument(documentId) {
     try {
-      const database = await connectToDatabase();
-      const notes = database.collection("notes");
-      const note = await notes.findOne({ documentId: documentId });
-      if (note) {
-        await notes.deleteOne({ documentId: documentId });
-      }
+      await Note.deleteOne({ documentId });
     } catch (error) {
       console.log(error);
       throw error;

@@ -9,7 +9,7 @@ const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
-const connectDb = require('./config/dbConn');
+const connectToDatabase = require('./config/dbConn');
 const { createServer } = require("http");
 const serverPort = process.env.PORT || 10000;
 
@@ -18,7 +18,7 @@ connectDb();
 app.use(logger);
 app.use(credentials);
 app.use(cors(corsOptions));
-app.use(express(urlencoded({ extended: false })));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -45,12 +45,19 @@ app.all('*', (req, res) => {
 
 app.use(errorHandler);
 
+connectToDatabase();
+
 mongoose.connection.once('open', () => {
   const server = createServer(app);
-  server.listen(serverPort, () => console.log(`Listening on ${serverPort}`));
-
+  const io = require('socket.io')(server, {
+    cors: {
+      origin: "*:*",
+      methods: ["GET", "POST"],
+    }
+  });
   const initializeSocketHandler = require("./controllers/socketController")
-  initializeSocketHandler(server);
+  initializeSocketHandler(io);
+  server.listen(serverPort, () => console.log(`Listening on ${serverPort}`));
 });
 
 module.exports = server;
