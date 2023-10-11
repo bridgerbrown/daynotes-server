@@ -13,8 +13,6 @@ const connectToDatabase = require('./config/dbConn');
 const { createServer } = require("http");
 const serverPort = process.env.PORT || 10000;
 
-connectDb();
-
 app.use(logger);
 app.use(credentials);
 app.use(cors(corsOptions));
@@ -58,6 +56,6 @@ mongoose.connection.once('open', () => {
   const initializeSocketHandler = require("./controllers/socketController")
   initializeSocketHandler(io);
   server.listen(serverPort, () => console.log(`Listening on ${serverPort}`));
+  module.exports = server;
 });
 
-module.exports = server;

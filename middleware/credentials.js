@@ -1,3 +1,5 @@
+require('dotenv').config({ path: '.env.local' });
+
 const credentials = (req, res, next) => {
   const allowedOrigins = process.env.ALLOWED_ORIGIN;
   const origin = req.headers.origin;

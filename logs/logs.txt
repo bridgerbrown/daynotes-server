@@ -1,0 +1,6 @@
+20231010	19:19:44	0d3e73fd-09b8-4aad-9674-555e8e1587e1	GET	undefined	/
+20231010	19:19:45	07d0d5da-0022-4c59-8328-21baeb79ce77	GET	undefined	/favicon.ico
+20231010	19:22:58	cba629b7-744b-4d8f-b797-fa01fd34f24f	OPTIONS	http://localhost:3000	/
+20231010	19:23:13	e67e325c-d852-4de5-aa91-83214e0f6581	OPTIONS	http://localhost:3000	/
+20231010	19:26:25	54c373f4-98a4-48d5-afda-05a36a15ceac	OPTIONS	http://localhost:3000	/
+20231010	19:27:39	dbc9aa76-adc6-45e9-b361-3c635812cbe4	OPTIONS	http://localhost:3000	/

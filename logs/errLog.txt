@@ -1,0 +1,6 @@
+20231010	19:19:44	700086c3-a8ae-43fe-9696-d7b88364e693	TypeError: Cannot read properties of undefined (reading 'includes')
+20231010	19:19:45	cc76ca34-6e4e-40bd-b4ad-082eb915cba3	TypeError: Cannot read properties of undefined (reading 'includes')
+20231010	19:22:58	e35a0cfa-5004-4669-9ec4-9b2d12a1f015	TypeError: Cannot read properties of undefined (reading 'includes')
+20231010	19:23:13	ceb26c7b-01f4-444c-af73-1caa9caac216	TypeError: Cannot read properties of undefined (reading 'includes')
+20231010	19:26:25	392731b1-0353-497f-bc7f-25506f503fc7	ReferenceError: allowedOrigins is not defined
+20231010	19:27:39	7c91b06a-3b93-4e91-9f54-a3be77ad160a	Error: Not allowed by CORS
