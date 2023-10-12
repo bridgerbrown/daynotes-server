@@ -29,3 +29,6 @@
 20231011	17:41:11	0d79971a-3088-43c7-a207-8ab097f9be51	Error: Not allowed by CORS
 20231011	17:41:11	a5d7bc7e-0ac3-463e-8beb-629ef8e7e2a3	Error: Not allowed by CORS
 20231011	20:38:48	5f81df6e-d6ae-49c8-b4de-e613049beb24	Error: Can't set headers after they are sent.
+20231012	12:37:03	7241ab94-cdb8-414e-8066-b589a62c0da5	Error: Can't set headers after they are sent.
+20231012	12:45:43	3cb443e8-3c8a-4ffa-b56a-a8ecc6921882	Error: Can't set headers after they are sent.
+20231012	12:48:37	7078cba9-0400-4fcc-b765-b8782d0a3616	Error: Can't set headers after they are sent.

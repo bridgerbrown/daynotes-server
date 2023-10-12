@@ -11,7 +11,9 @@ const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
 const connectToDatabase = require('./config/dbConn');
 const { createServer } = require("http");
-const serverPort = process.env.PORT || 10000;
+const serverPort = 10000;
+
+connectToDatabase();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,10 +30,13 @@ app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
 
+app.options('/register', (req, res) => {
+  res.status(204).end();
+});
+
 app.use(verifyJWT);
 
 app.all('*', (req, res) => {
-  res.redirect('/404');
   if (req.accepts('html')) {
     res.sendFile(path.join(__dirname, 'views', '404.html'));
   } else if (req.accepts('json')) {
@@ -42,8 +47,6 @@ app.all('*', (req, res) => {
 });
 
 app.use(errorHandler);
-
-connectToDatabase();
 
 mongoose.connection.once('open', () => {
   const server = createServer(app);
