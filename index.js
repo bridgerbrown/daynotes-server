@@ -49,7 +49,7 @@ mongoose.connection.once('open', () => {
   const server = createServer(app);
   const io = require('socket.io')(server, {
     cors: {
-      origin: "*:*",
+      origin: "*",
       methods: ["GET", "POST"],
     }
   });

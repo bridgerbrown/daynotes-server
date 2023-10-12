@@ -2,7 +2,6 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 
-
 const handleNewUser = async (req, res) => {
   const { email, username, password } = req.body;
   if (!username || !password) return res.status(400).json({
