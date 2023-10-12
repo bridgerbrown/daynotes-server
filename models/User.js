@@ -16,7 +16,6 @@ const userSchema = new Schema({
   },
   userId: {
     type: String,
-    required: true
   },
   userImage: {
     type: String,

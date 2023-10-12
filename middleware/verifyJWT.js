@@ -3,6 +3,11 @@ require('dotenv').config();
 
 const verifyJWT = (req, res, next) => {
   const authHeader = req.headers.authorization || req.headers.Authorization;
+
+  if (req.url === '/register') {
+    return next();
+  }
+
   if (!authHeader?.startsWith('Bearer ')) return res.sendStatus(401);
   const token = authHeader.split(' ')[1];
   jwt.verify(
