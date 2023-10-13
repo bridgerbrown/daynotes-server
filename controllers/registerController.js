@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 
 const handleNewUser = async (req, res) => {
+  console.log("Handling new user...")
   const { email, username, password } = req.body;
   if (!username || !password) return res.status(400).json({
     'message': 'Username and password are required.'

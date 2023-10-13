@@ -132,3 +132,17 @@
 20231012	13:43:25	40c0c06b-1314-4200-bdb3-061a28bb63d2	POST	http://localhost:3000	/register
 20231012	13:49:01	ee196a1b-710f-4e7b-b04d-8088d5daedc7	POST	http://localhost:3000	/register
 20231012	13:52:24	616b454f-cadd-49a7-8395-acabd3776da0	POST	http://localhost:3000	/register
+20231012	16:31:11	e06995db-47b7-443f-918a-b524f761e8aa	POST	http://localhost:3000	/register
+20231012	16:40:24	60c16775-30e5-4215-9b29-b122fa026865	POST	undefined	/register
+20231012	16:42:50	94aa5f70-ea4c-4d74-8bb4-ca68aff772c1	POST	undefined	/register
+20231012	16:45:37	89fa4e0f-59b2-48d2-94e5-b6204a1bd233	POST	http://localhost:3000	/register
+20231012	16:46:35	eed09b33-ffa7-407d-aa02-992a54fe08db	OPTIONS	http://localhost:3000	/register
+20231012	16:48:45	2e1f4889-acb7-41bb-8176-a237c7564d26	POST	http://localhost:3000	/register
+20231012	16:49:48	335737cf-426a-4297-b8f0-0a0398aa8670	POST	http://localhost:3000	/register
+20231012	17:01:15	c479b9d9-cea0-43fa-b373-d81fcd1a08e1	POST	http://localhost:3000	/register
+20231012	17:42:44	f76fed35-d0a6-4506-a4a4-573a7f6cab5c	GET	undefined	/register
+20231012	17:47:49	52df952f-7458-4584-9a19-84327963fee5	GET	undefined	/register
+20231012	17:47:49	4f25e4b3-37f9-48e5-80f7-f43bbbbd60fb	GET	undefined	/favicon.ico
+20231012	17:50:56	485aaf07-386a-4ce2-bd93-7d64615951a2	POST	http://localhost:3000	/register
+20231012	17:55:35	fd7203a1-5bc2-4a3a-8b6b-cda708cec529	POST	http://localhost:3000	/register
+20231012	17:58:17	0c25a698-8058-428e-9fc8-428d0bc4eea9	POST	http://localhost:3000	/register
