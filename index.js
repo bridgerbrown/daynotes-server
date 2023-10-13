@@ -22,11 +22,7 @@ app.use(cors(corsOptions));
 app.use(logger);
 
 app.use('/', express.static(path.join(__dirname, '/public')));
-
 app.use('/', require('./routes/root'));
-app.options('/register', (req, res) => {
-  res.status(204).end();
-});
 app.use('/register', require('./routes/register'));
 
 app.use(credentials);
