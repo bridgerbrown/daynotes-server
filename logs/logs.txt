@@ -161,3 +161,12 @@
 20231013	14:23:38	e7576c54-941c-4996-bdb0-cf66ff75f896	POST	http://localhost:3000	/
 20231013	14:25:23	25967459-f9da-43b6-b343-5b0f191fd7d6	POST	http://localhost:3000	/register
 20231013	14:44:33	62ef5eeb-10b0-44f2-9067-8cddb1d1661f	POST	http://localhost:3000	/register
+20231013	17:51:03	33684969-5057-4556-b507-98591ffa454d	POST	http://localhost:3000	/register
+20231013	17:51:19	73adaae5-3cdf-42bc-936d-4bcad06b0e2a	POST	http://localhost:3000	/login
+20231013	17:55:17	9cc3be99-6fd9-45d2-adf5-b61cddbbf608	POST	http://localhost:3000	/login
+20231013	17:55:34	4b35ba11-f254-489c-b669-23e7cdaed004	POST	http://localhost:3000	/login
+20231013	17:57:18	bff89a80-d4f7-4f61-9c98-f4351a63f60e	POST	http://localhost:3000	/login
+20231013	18:00:01	f5337ff4-7538-490a-9fa5-1ea36efdb566	POST	http://localhost:3000	/login
+20231013	18:01:30	5883a2fc-2dc7-44bb-abd3-4f112a18658b	POST	http://localhost:3000	/login
+20231013	18:01:51	668d6209-daa1-4f8c-a3fd-5856d1714968	POST	http://localhost:3000	/login
+20231013	18:05:42	ab7541b3-b45e-49d2-a0dc-425f153af752	POST	http://localhost:3000	/login
