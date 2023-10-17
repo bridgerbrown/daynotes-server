@@ -27,12 +27,12 @@ app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
 
 app.use(credentials);
+app.use(verifyJWT);
 app.use('/user', require('./routes/user'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
 
 
-app.use(verifyJWT);
 
 app.all('*', (req, res) => {
   if (req.accepts('html')) {

@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+require('dotenv').config({ path: '.env.local' });
 
 const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
@@ -14,13 +14,9 @@ const handleRefreshToken = async (req, res) => {
     refreshToken,
     process.env.REFRESH_TOKEN_SECRET,
     (err, decoded) => {
-      if (err || foundUser.username !== decoded.username) return res.sendStatus(403);
+      if (err || foundUser.email !== decoded.email) return res.sendStatus(403);
       const accessToken = jwt.sign(
-        {
-          "UserInfo": {
-            "username": decoded.username,
-          }
-        },
+        { "email": decoded.email, },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '30m' }
       );

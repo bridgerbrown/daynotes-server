@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config({ path: '.env.local' });
 
 const handleLogin = async (req, res) => {
   console.log("Logging user in...");
@@ -16,17 +17,12 @@ const handleLogin = async (req, res) => {
   const match = await bcrypt.compare(password, foundUser.password);
   if (match) {
     const accessToken = jwt.sign(
-      {
-        "UserInfo": {
-          "email": foundUser.email
-        }
-      },
+      { "email": foundUser.email },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: '30m' }
     );
     const refreshToken = jwt.sign(
-      { "email": foundUser.email
-      },
+      { "email": foundUser.email },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: '1d' }
     );

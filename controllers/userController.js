@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const handleUserData = async (req, res) => {
   console.log("Fetching user data...");
-  const { email } = req.body;
+  const { email } = req.query;
   if (!email) {
     return res.status(400).json({
       'message': 'User info not provided.'
@@ -14,7 +14,7 @@ const handleUserData = async (req, res) => {
   const foundUser = await User.findOne({ email: email }).exec();
   if (!foundUser) {
     return res.status(404).json({
-      'message': 'User not found;'
+      'message': 'User not found'
     });
   }
   res.json({ user: foundUser });
