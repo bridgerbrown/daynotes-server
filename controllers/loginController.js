@@ -6,7 +6,7 @@ require('dotenv').config({ path: '.env.local' });
 const handleLogin = async (req, res) => {
   console.log("Logging user in...");
   const { email, password } = req.body;
-  console.log(`${email} and ${password}`);
+  console.log(`Log in email ${email}`) 
   if (!email || !password) return res.status(400).json({
     'message': 'Username and password are required.'
   });

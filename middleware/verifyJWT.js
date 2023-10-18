@@ -3,8 +3,6 @@ require('dotenv').config();
 
 const verifyJWT = (req, res, next) => {
   const authHeader = req.headers.authorization || req.headers.Authorization;
-  console.log("authHeader: " + authHeader);
-  console.log(req.query.email);
   if (req.url === '/register') {
     return next();
   }
@@ -19,7 +17,10 @@ const verifyJWT = (req, res, next) => {
     token,
     process.env.ACCESS_TOKEN_SECRET,
     (err, decoded) => {
-      if (err) return res.sendStatus(403);
+      if (err) {
+        console.error("Error verifying token:", err);
+        return res.sendStatus(403);
+      }
       req.email = decoded.email;
       next();
     }

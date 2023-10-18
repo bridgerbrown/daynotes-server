@@ -20,4 +20,26 @@ const handleUserData = async (req, res) => {
   res.json({ user: foundUser });
 };
 
-module.exports = { handleUserData };
+const updateUserImage = async (req, res) => {
+  console.log("Updating users image...");
+  const { email, newImage } = req.body;
+  try {
+    const foundUser = await User.findOneAndUpdate(
+      { email: email },
+      { $set: { userImage: newImage } },
+      { new: true }
+    );
+
+    if (!foundUser) {
+      return res.status(404).json({
+        'message': 'User not found'
+      });
+    }
+    res.status(200).json(foundUser);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { handleUserData, updateUserImage };
