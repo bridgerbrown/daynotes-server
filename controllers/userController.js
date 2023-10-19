@@ -4,14 +4,14 @@ const jwt = require('jsonwebtoken');
 
 const handleUserData = async (req, res) => {
   console.log("Fetching user data...");
-  const { email } = req.query;
-  if (!email) {
+  const { email, userId } = req.query;
+  if (!email || !userId) {
     return res.status(400).json({
       'message': 'User info not provided.'
     });
   }
 
-  const foundUser = await User.findOne({ email: email }).exec();
+  const foundUser = await User.findOne({ email: email, userId: userId }).exec();
   if (!foundUser) {
     return res.status(404).json({
       'message': 'User not found'
@@ -22,10 +22,10 @@ const handleUserData = async (req, res) => {
 
 const updateUserImage = async (req, res) => {
   console.log("Updating users image...");
-  const { email, newImage } = req.body;
+  const { email, userId, newImage } = req.body;
   try {
     const foundUser = await User.findOneAndUpdate(
-      { email: email },
+      { email: email, userId: userId },
       { $set: { userImage: newImage } },
       { new: true }
     );

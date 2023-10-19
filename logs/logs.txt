@@ -141,3 +141,10 @@
 20231018	15:01:33	54beebdf-1278-4bac-a5c4-cf0235f8774d	GET	undefined	/user?email=barbie@gmail.com
 20231018	15:02:20	48e8b2dd-5957-44f6-a83e-07170ba6f45e	GET	undefined	/user?email=barbie@gmail.com
 20231018	15:02:20	4bbd46ea-0e38-483e-8597-07be63d0cabc	GET	undefined	/user?email=barbie@gmail.com
+20231018	16:23:13	e5a2e65b-b0c4-41f1-8ae0-5b827eca342f	GET	undefined	/user?email=undefined
+20231018	16:23:13	728a820d-49d4-48f1-8caa-00154547dd94	GET	undefined	/user?email=undefined
+20231018	16:23:17	58979be9-e62d-4d80-8ac0-680cff58dd0c	GET	undefined	/user?email=undefined
+20231018	16:23:17	346b856c-c914-4f74-bb58-bc8b9de2638c	GET	undefined	/user?email=undefined
+20231018	16:23:30	00a0cddd-b4d1-42aa-9b9e-02407bf96e26	POST	http://localhost:3000	/login
+20231018	16:23:30	bcf3e896-0ceb-4b79-83b6-0738075e66de	GET	undefined	/user?email=barbie@gmail.com
+20231018	16:23:30	3184640f-5d31-440e-84a2-3294dcf5f10c	GET	undefined	/user?email=barbie@gmail.com

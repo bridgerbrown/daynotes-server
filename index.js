@@ -30,6 +30,7 @@ app.use(credentials);
 app.use(verifyJWT);
 app.use('/user', require('./routes/user'));
 app.use('/refresh', require('./routes/refresh'));
+app.use('/notes', require('./routes/notes'));
 app.use('/logout', require('./routes/logout'));
 
 
