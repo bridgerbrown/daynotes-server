@@ -1,9 +1,8 @@
 const Note = require('../models/Note');
-const server = require('../index');
-const mongoose = require('mongoose');
 
 function initializeSocketHandler(io) {
   io.on("connection", (socket) => {
+    console.log("Socket.io connected")
     socket.on("get-document", async (userId, date) => {
       const documentId = `${userId}-${date}`;
       const document = await findOrCreateDocument(documentId, userId, date);

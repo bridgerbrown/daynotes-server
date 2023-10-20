@@ -1,6 +1,7 @@
 const User = require('../models/User');
 
 const handleLogout = async (req, res) => {
+  console.log("Logging user out...")
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.sendStatus(204);
   const refreshToken = cookies.jwt;

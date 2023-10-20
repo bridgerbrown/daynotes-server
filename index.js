@@ -33,8 +33,6 @@ app.use('/refresh', require('./routes/refresh'));
 app.use('/notes', require('./routes/notes'));
 app.use('/logout', require('./routes/logout'));
 
-
-
 app.all('*', (req, res) => {
   if (req.accepts('html')) {
     res.sendFile(path.join(__dirname, 'views', '404.html'));
@@ -60,4 +58,3 @@ mongoose.connection.once('open', () => {
   server.listen(serverPort, () => console.log(`Listening on ${serverPort}`));
   module.exports = server;
 });
-
