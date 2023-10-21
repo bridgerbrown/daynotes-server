@@ -2,7 +2,9 @@ const corsOptions = {
   origin: [
     'wss://daynotes-client.vercel.app',
     'https://daynotes-client.vercel.app',
-    'https://daynotes-server.onrender.com'
+    'http://daynotes-client.vercel.app',
+    'https://daynotes-server.onrender.com',
+    'http://daynotes-server.onrender.com'
   ],
   methods: 'GET, HEAD, POST, PUT, DELETE, OPTIONS', 
   allowedHeaders: 'Content-Type',
