@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const handleUserData = async (req, res) => {
-  console.log("Fetching user data...");
   const { email, userId } = req.query;
   if (!email || !userId) {
     return res.status(400).json({
@@ -21,7 +20,6 @@ const handleUserData = async (req, res) => {
 };
 
 const updateUserImage = async (req, res) => {
-  console.log("Updating users image...");
   const { email, userId, newImage } = req.body;
   try {
     const foundUser = await User.findOneAndUpdate(

@@ -1,5 +1,7 @@
+const allowedOrigins = require("./allowedOrigins");
+
 const corsOptions = {
-  origin: '*',
+  origin: allowedOrigins,
   methods: 'GET, HEAD, POST, PUT, DELETE, OPTIONS', 
   allowedHeaders: 'Content-Type',
   optionsSuccessStatus: 204,

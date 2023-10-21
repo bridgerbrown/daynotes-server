@@ -1,6 +1,6 @@
 const allowedOrigins = [
-  'http://127.0.0.1', 
-  'http://localhost:3000'
+  'wss://daynotes-client.vercel.app/',
+  'https://daynotes-client.vercel.app/'
 ];
 
 module.exports = allowedOrigins;

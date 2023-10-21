@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const handleNotesData = async (req, res) => {
-  console.log("Fetching notes data...");
   const { email, userId } = req.query;
   if (!email || !userId) {
     return res.status(400).json({

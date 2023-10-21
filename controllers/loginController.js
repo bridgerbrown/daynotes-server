@@ -4,9 +4,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: '.env.local' });
 
 const handleLogin = async (req, res) => {
-  console.log("Logging user in...");
   const { email, password } = req.body;
-  console.log(`Log in email ${email}`) 
   if (!email || !password) return res.status(400).json({
     'message': 'Username and password are required.'
   });
@@ -21,14 +19,14 @@ const handleLogin = async (req, res) => {
         "userId": foundUser.userId,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '30m' }
+      { expiresIn: '1h' }
     );
     const refreshToken = jwt.sign(
       { "email": foundUser.email,
         "userId": foundUser.userId,
       },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: '1d' }
+      { expiresIn: '1w' }
     );
     foundUser.refreshToken = refreshToken;
     await foundUser.save();
