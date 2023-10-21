@@ -1,7 +1,9 @@
-const allowedOrigins = require("./allowedOrigins");
-
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: [
+    'wss://daynotes-client.vercel.app',
+    'https://daynotes-client.vercel.app',
+    'https://daynotes-server.onrender.com'
+  ],
   methods: 'GET, HEAD, POST, PUT, DELETE, OPTIONS', 
   allowedHeaders: 'Content-Type',
   optionsSuccessStatus: 204,
