@@ -49,7 +49,7 @@ mongoose.connection.once('open', () => {
   const server = createServer(app);
   const io = require('socket.io')(server, {
     cors: {
-      origin: "https://daynotes-client.vercel.app/",
+      origin: "https://daynotes-client.vercel.app",
       methods: ["GET", "POST"],
     }
   });
