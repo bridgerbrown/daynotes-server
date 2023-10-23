@@ -11,7 +11,7 @@ const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
 const connectToDatabase = require('./config/dbConn');
 const { createServer } = require("http");
-const serverPort = 10000;
+const serverPort = 443;
 
 connectToDatabase();
 
