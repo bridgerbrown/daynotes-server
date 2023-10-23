@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const handleUserData = async (req, res) => {
-  console.log(`Getting user data with ${email}, ${userId}`)
   const { email, userId } = req.query;
+  console.log(`Getting user data with ${email}, ${userId}`)
   if (!email || !userId) {
     return res.status(400).json({
       'message': 'User info not provided.'
