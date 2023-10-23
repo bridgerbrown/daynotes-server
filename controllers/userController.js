@@ -21,7 +21,7 @@ const handleUserData = async (req, res) => {
 };
 
 const updateUserImage = async (req, res) => {
-  const { email, userId, newImage } = req.body;
+  const { email, userId, newImage } = req.query;
   try {
     const foundUser = await User.findOneAndUpdate(
       { email: email, userId: userId },
