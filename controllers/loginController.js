@@ -36,7 +36,7 @@ const handleLogin = async (req, res) => {
       sameSite: 'None',
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
-    res.json({ accessToken });
+    res.json({ accessToken, refreshToken });
   } else {
     res.sendStatus(401);
   };
