@@ -1,20 +1,31 @@
 const User = require('../models/User');
+const jwt = require('jsonwebtoken'); // You need the JWT library for token validation
 
 const handleLogout = async (req, res) => {
-  const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(204);
-  const refreshToken = cookies.jwt;
+  const authorizationHeader = req.headers.authorization;
+  if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+    return res.sendStatus(401); 
+  }
 
-  const foundUser = await User.findOne({ refreshToken }).exec();
-  if (!foundUser) {
-    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
-    return res.sendStatus(204);
-  };
-  foundUser.refreshToken = '';
-  const result = await foundUser.save();
+  const accessToken = authorizationHeader.replace('Bearer ', '');
 
-  res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
-  res.sendStatus(204);
+  try {
+    const decodedToken = jwt.verify(accessToken, 'your-secret-key');
+    const refreshToken = decodedToken.refreshToken;
+
+    const foundUser = await User.findOne({ refreshToken }).exec();
+    if (!foundUser) {
+      return res.sendStatus(204); 
+    }
+
+    foundUser.refreshToken = '';
+    const result = await foundUser.save();
+
+    return res.sendStatus(204); 
+  } catch (err) {
+    console.error("Error during logout:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 module.exports = { handleLogout };
