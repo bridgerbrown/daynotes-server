@@ -10,7 +10,7 @@ const handleLogout = async (req, res) => {
   const accessToken = authorizationHeader.replace('Bearer ', '');
 
   try {
-    const decodedToken = jwt.verify(accessToken, 'your-secret-key');
+    const decodedToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
     const refreshToken = decodedToken.refreshToken;
 
     const foundUser = await User.findOne({ refreshToken }).exec();
