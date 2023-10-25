@@ -4,23 +4,30 @@ require('dotenv').config({ path: '.env.local' });
 
 const handleRefreshToken = async (req, res) => {
   const refreshToken = req.body.refreshToken;
-  if (!refreshToken) return res.status(401).json({ message: 'Refresh token is missing' });
+  if (!refreshToken) return res.sendStatus(401);
 
   const foundUser = await User.findOne({ refreshToken }).exec();
-  if (!foundUser) return res.status(403).json({ message: 'User not found' });
+  if (!foundUser) return res.sendStatus(403);
 
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
-    if (err || foundUser.email !== decoded.email) return res.status(403).json({ message: 'Invalid or expired refresh token' });
+  jwt.verify(
+    refreshToken,
+    process.env.REFRESH_TOKEN_SECRET,
+    async (err, decoded) => {
+      if (err) {
+        console.error("Error verifying refresh token:", err);
+        return res.sendStatus(403);
+      }
 
-    const accessToken = jwt.sign(
-      { "email": decoded.email, 
-        "userId": decoded.userId,
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '1h' }
-    );
-    res.status(200).json({ accessToken });
-  });
+      const accessToken = jwt.sign(
+        { "email": decoded.email, 
+          "userId": decoded.userId,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: '1h' }
+      );
+      res.json({ accessToken })
+    }
+  );
 };
 
 module.exports = { handleRefreshToken };

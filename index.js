@@ -25,11 +25,11 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
+app.use('/refresh', require('./routes/refresh'));
 
 app.use(credentials);
 app.use(verifyJWT);
 app.use('/user', require('./routes/user'));
-app.use('/refresh', require('./routes/refresh'));
 app.use('/notes', require('./routes/notes'));
 app.use('/logout', require('./routes/logout'));
 
