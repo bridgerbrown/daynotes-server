@@ -3,7 +3,8 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: '.env.local' });
 
 const handleRefreshToken = async (req, res) => {
-  const refreshToken = req.body.refreshToken;
+  console.log("Handling refresh token...")
+  const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) return res.sendStatus(401);
 
   const foundUser = await User.findOne({ refreshToken }).exec();

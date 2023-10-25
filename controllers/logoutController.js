@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken'); // You need the JWT library for token valid
 
 const handleLogout = async (req, res) => {
   const authorizationHeader = req.headers.authorization;
+
   if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
     return res.sendStatus(401); 
   }

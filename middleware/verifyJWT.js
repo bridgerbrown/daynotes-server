@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const verifyJWT = async (req, res, next) => {
+  console.log("Verifying JWT...")
   const authHeader = req.headers.authorization || req.headers.Authorization;
   if (req.url === '/register') {
     return next();
@@ -22,19 +23,12 @@ const verifyJWT = async (req, res, next) => {
 
     const now = Math.floor(Date.now() / 1000);
     if (decoded.exp && decoded.exp - now < 300) {
-      const refreshToken = req.headers['refresh-token'];
-      if (!refreshToken) {
-        console.log("Refresh token is missing");
-        return res.sendStatus(401);
-      }
-
       try {
         const response = await fetch('/refresh', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ refreshToken }),
         });
 
         if (response.status === 200) {
