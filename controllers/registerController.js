@@ -14,14 +14,15 @@ const handleNewUser = async (req, res) => {
 
   try {
     const hashedPwd = await bcrypt.hash(password, 10);
-    const memberSinceDate = format((new Date(startOfToday())), 'LLLL dd yyyy').toString();
+    const today = startOfToday();
+    const memberSinceDate = format((new Date(today)), 'MMMM dd yyyy');
     await User.create({
       "email": email,
       "username": username,
       "password": hashedPwd,
       "userId": uuidv4(),
       "userImage": "/user.png",
-      "memberSince": memberSinceDate,
+      "memberSince": memberSinceDate.toString(),
     });
 
     res.status(201).json({ 'success': `New user ${username} created.`});
