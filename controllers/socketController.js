@@ -2,7 +2,14 @@ const Note = require('../models/Note');
 
 function initializeSocketHandler(io) {
   io.on("connection", (socket) => {
-    console.log("Socket.io connected")
+    console.log("Socket.io connected");
+
+    socket.on("join-room", (userId, date) => {
+      const room = `${userId}-${date}`;
+      socket.join(room);
+      console.log("Joining room...");
+    });
+
     socket.on("get-document", async (userId, date) => {
       const documentId = `${userId}-${date}`;
       const document = await findOrCreateDocument(documentId, userId, date);
