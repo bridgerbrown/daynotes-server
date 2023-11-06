@@ -25,8 +25,8 @@ function initializeSocketHandler(io) {
         socket.on("disconnect", async () => {
           const note = await findDocument(documentId);
           if (note && note.data.ops) {
-            const noteData = note.data.ops[0].insert;
-            if (noteData.length === 1 || isOnlyWhiteSpace(noteData)) {
+            const noteData = note.data.ops;
+            if (noteData.length === 0 || isOnlyWhiteSpace(noteData)) {
               await deleteDocument(documentId);
             }
           }
