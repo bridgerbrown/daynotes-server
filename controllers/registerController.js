@@ -15,7 +15,8 @@ const handleNewUser = async (req, res) => {
   try {
     const hashedPwd = await bcrypt.hash(password, 10);
     const today = startOfToday();
-    const memberSinceDate = format((new Date(today)), 'MMMM dd yyyy');
+    const currentDate = new Date(today);
+    const memberSinceDate = `${currentDate.toLocaleString('en-US', { month: 'long' })} ${currentDate.getDate()} ${currentDate.getFullYear()}`;
     await User.create({
       "email": email,
       "username": username,
