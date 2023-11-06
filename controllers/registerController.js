@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
+const { format } = require('date-fns');
 
 const handleNewUser = async (req, res) => {
   const { email, username, password } = req.body;
@@ -13,13 +14,14 @@ const handleNewUser = async (req, res) => {
 
   try {
     const hashedPwd = await bcrypt.hash(password, 10);
+    const memberSinceDate = format(new Date(), 'M/dd/yyyy');
     await User.create({
       "email": email,
       "username": username,
       "password": hashedPwd,
       "userId": uuidv4(),
       "userImage": "/user.png",
-      "memberSince": new Date(),
+      "memberSince": memberSinceDate.toString(),
     });
 
     res.status(201).json({ 'success': `New user ${username} created.`});
