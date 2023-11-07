@@ -21,7 +21,7 @@ const handleNewUser = async (req, res) => {
       "password": hashedPwd,
       "userId": uuidv4(),
       "userImage": "/user.png",
-      "memberSince": memberSinceDate.toISOString(),
+      "memberSince": currentDate.toISOString(),
     });
 
     res.status(201).json({ 'success': `New user ${username} created.`});
