@@ -30,16 +30,24 @@ function initializeSocketHandler(io) {
         });
 
         socket.on("disconnect", async () => {
-          const note = await findDocument(documentId);
-          if (note && note.data.ops) {
-            const noteData = note.data.ops;
-            if (noteData.length === 0 || isOnlyWhiteSpace(noteData)) {
-              await deleteDocument(documentId);
+          const userDocuments = await findUserDocuments(userId);
+            userDocuments.forEach(async (note) => {
+              if (note.data.ops && (note.data.ops.length === 0 || isOnlyWhiteSpace(note.data.ops))) {
+                await deleteDocument(note.documentId);
             }
-          }
+          });
         });
       });
     });
+
+  async function findUserDocuments(userId) {
+    try {
+      return Note.find({ userId });
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
 
   async function findOrCreateDocument(documentId, userId, date) {
     try {
